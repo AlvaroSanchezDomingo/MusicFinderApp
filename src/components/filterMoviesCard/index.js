@@ -57,7 +57,6 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value)
   };
 
-
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
