@@ -20,13 +20,16 @@ export const getMovie = async ( args ) => {
   }
   return response.json();
 };
-  export const getUpcomingMovies = () => {
-    return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-    )
-      .then(res => res.json())
-      .then(json => json.results);
-  };
+export const getUpcomingMovies = async () => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+  );
+  if (!response.ok) {
+    throw new Error(response.json().message);
+  }
+  return response.json();
+};
+
   export const getGenres = async () => {
     const response = await  fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=" +

@@ -3,7 +3,6 @@ import MovieList from "../components/movieList";
 import SampleMovie from "./sampleData";
 import { MemoryRouter } from "react-router";
 import { action } from "@storybook/addon-actions";
-//import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 import AddToFavoritesIcon from "../components/cardIcons/addToFavourites";
 import Grid from "@material-ui/core/Grid";
 import MoviesContextProvider from "../contexts/moviesContext";
