@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 const MovieHeader = ( { movie, history}) => {
   const classes = useStyles();
-
   return (
     <Paper component="div" className={classes.root}>
       <IconButton aria-label="go back" onClick={() => history.goBack()} >
