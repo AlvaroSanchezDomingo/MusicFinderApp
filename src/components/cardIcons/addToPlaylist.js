@@ -9,6 +9,7 @@ const AddToPlaylist = ({ movie }) => {
   const handlePlaylistAdd = (e) => {
     e.preventDefault();
     context.addToPlaylist(movie);
+    console.log(context.playlist)
   };
   return (
     <IconButton aria-label="add to playlist" onClick={handlePlaylistAdd}>

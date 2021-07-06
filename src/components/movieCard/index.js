@@ -34,11 +34,6 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
-  //const handleAddToFavorite = (e) => {
-  //  e.preventDefault();
-  //  addToFavorites(movie);
-  //};
-
   return (
     <Card className={classes.card}>
       <CardHeader
