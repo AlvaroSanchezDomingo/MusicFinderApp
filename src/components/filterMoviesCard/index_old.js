@@ -1,12 +1,5 @@
 import { getGenres } from "../../api/tmbd-api";
-import { autoComplete } from "../../api/shazan-api";
 import React from "react";
-import { useQuery } from "react-query";
-import Spinner from '../spinner'
-
-//import SuggestionList from "./components/suggestionList";
-
-
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -18,8 +11,9 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
-
+import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
+import { useQuery } from "react-query";
+import Spinner from '../spinner'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,35 +31,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
-  const [searchText, setSearchText] = useState("");
+  const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
-  const filterChange = event => {
-    event.preventDefault();
-    setSearchText(event.target.value.toLowerCase());
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
+  const genres = data.genres;
+  genres.unshift({ id: "0", name: "All" });
+
+  const handleChange = (e, type, value) => {
+    e.preventDefault();
+    props.onUserInput(type, value); // NEW
   };
-  const suggestedList = {"hints":[
-                          {"term":"aquí abajo"},
-                          {"term":"aquí nadie va a llorar"},
-                          {"term":"aquí estoy"}
-                        ]}
-  //const handleChange = (e, type, value) => {
-  //  e.preventDefault();
-  //  props.onUserInput(type, value); // NEW
-  //};
 
-  //const handleTextChange = (e, props) => {
-  //  handleChange(e, "name", e.target.value);
-  //};
+  const handleTextChange = (e, props) => {
+    handleChange(e, "name", e.target.value);
+  };
 
-  //<SuggestionList list={suggestedList} />
+  const handleGenreChange = (e) => {
+    handleChange(e, "genre", e.target.value);
+  };
+
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-            Search music
+          Filter the movies.
         </Typography>
-
         <TextField
           className={classes.formControl}
           id="filled-search"
@@ -73,15 +71,36 @@ export default function FilterMoviesCard(props) {
           type="search"
           value={props.titleFilter}
           variant="filled"
-          onChange={filterChange}
+          onChange={handleTextChange}
         />
+        
+        <FormControl className={classes.formControl}>
+          <InputLabel id="genre-label">Genre</InputLabel>
+          <Select
+            labelId="genre-label"
+            id="genre-select"
+            value={props.genreFilter}
+            onChange={handleGenreChange}
+          >
+            {genres.map((genre) => {
+              return (
+                <MenuItem key={genre.id} value={genre.id}>
+                  {genre.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
       </CardContent>
-      {searchText}
-      
+      <CardMedia
+        className={classes.media}
+        image={img}
+        title="Filter"
+      />
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-          Search music
+          Filter the movies.
           <br />
         </Typography>
       </CardContent>
