@@ -37,12 +37,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
+  //const [suggestedList, setSuggestedList] = useState({hints:[{term: "a"},{term: "b"},{term: "c"},{term: "d"}]});
   const [suggestedList, setSuggestedList] = useState({hints:[]});
 
-  const makeSuggestion = async (searchText) => {
-    await autoComplete(searchText).then(result => {
+  const makeSuggestion = (searchText) => {
+    //autoComplete(searchText).then(result => {
+    //  console.log(result)
+    //  suggestedList=result;
+    //});
+    let codedText = searchText.replace(/ /g, "%20");
+
+    fetch("https://shazam.p.rapidapi.com/auto-complete?term="+codedText+"&locale=en-US", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-key": "752e5c2b77mshd527e35bbfb1033p1b415bjsna2d20660dbea",
+      "x-rapidapi-host": "shazam.p.rapidapi.com"
+    }
+    })
+    .then((response) => response.json())
+    .then((result) => {
       console.log(result)
-      //setSuggestedList(result);
+      setSuggestedList(result);
     });
   }
 
@@ -50,7 +65,7 @@ export default function FilterMoviesCard(props) {
     event.preventDefault();
     makeSuggestion(event.target.value.toLowerCase());
   };
-//<SuggestionList hints={suggestedList.hints} />
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -69,7 +84,7 @@ export default function FilterMoviesCard(props) {
           onChange={filterChange}
         />
       </CardContent>
-      
+      <SuggestionList hints={suggestedList.hints} />
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />

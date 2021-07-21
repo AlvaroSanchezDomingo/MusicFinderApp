@@ -1,12 +1,13 @@
 import React from "react";
-import Friend from "./friend";
+import Suggestion from "./suggestion";
 
 const SuggestionList = props => {
-  // console.log('Render of FilteredFriendList')
-  const friends = props.list.map(item => (
-    <Friend key={item.email} friend={item} />
+
+  const suggestions = props.hints.map(item => (
+    <Suggestion term ={item.term} />
   ));
-  return <ul>{friends}</ul>;
+
+  return <ul>{suggestions}</ul>;
 };
 
 export default SuggestionList;
