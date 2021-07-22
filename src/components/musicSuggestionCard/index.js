@@ -1,7 +1,5 @@
-import { getGenres } from "../../api/tmbd-api";
 import { autoComplete } from "../../api/shazan-api";
 import React , {useState}  from "react";
-import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
 import SuggestionList from "./suggestionList";
@@ -9,24 +7,17 @@ import SuggestionList from "./suggestionList";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    backgroundColor: "rgb(204, 204, 0)",
+    backgroundColor: "rgb(63, 81, 181)",
   },
-  media: { height: 300 },
 
   formControl: {
     margin: theme.spacing(1),
@@ -38,19 +29,23 @@ const useStyles = makeStyles((theme) => ({
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
   const [suggestedList, setSuggestedList] = useState({hints:[]});
+  const [chosenSuggestion, setChosenSuggestion] = useState("");
 
   const makeSuggestion = async (searchText) => {
     await autoComplete(searchText).then(result => {
-      console.log(result)
-      //setSuggestedList(result);
+      setSuggestedList(result);
     });
   }
-
   const filterChange = event => {
     event.preventDefault();
     makeSuggestion(event.target.value.toLowerCase());
   };
-//<SuggestionList hints={suggestedList.hints} />
+
+  const handleChosenSuggestionChange = (term) => {
+    setChosenSuggestion(term);
+    props.onUserInput(term);
+  };
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -58,7 +53,6 @@ export default function FilterMoviesCard(props) {
           <SearchIcon fontSize="large" />
             Search music
         </Typography>
-
         <TextField
           className={classes.formControl}
           id="filled-search"
@@ -69,14 +63,9 @@ export default function FilterMoviesCard(props) {
           onChange={filterChange}
         />
       </CardContent>
-      
-      <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Search music
-          <br />
-        </Typography>
-      </CardContent>
+      <SuggestionList hints={suggestedList.hints} onUserInput = {handleChosenSuggestionChange} />
     </Card>
   );
 }
+
+//<SuggestionList hints={suggestedList.hints} onUserInput = {handleChosenSuggestionChange} />

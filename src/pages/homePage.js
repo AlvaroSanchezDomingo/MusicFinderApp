@@ -1,5 +1,5 @@
 import React from "react";
-import PageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateMusicListPage";
 import {getMovies} from '../api/tmbd-api'
 import Spinner from '../components/spinner'
 import { useQuery } from 'react-query'
@@ -23,7 +23,6 @@ const HomePage = (props) => {
 
   return (
     <PageTemplate
-      title="Discover Movies"
       movies={movies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
