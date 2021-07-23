@@ -32,9 +32,11 @@ export default function FilterMoviesCard(props) {
   const [chosenSuggestion, setChosenSuggestion] = useState("");
 
   const makeSuggestion = async (searchText) => {
-    await autoComplete(searchText).then(result => {
-      setSuggestedList(result);
-    });
+    if(searchText){
+      await autoComplete(searchText).then(result => {
+        setSuggestedList(result);
+      });
+    }
   }
   const filterChange = event => {
     event.preventDefault();
