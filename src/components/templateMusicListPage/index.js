@@ -1,7 +1,7 @@
 import { search } from "../../api/shazan-api";
 import React, { useState } from "react";
 import MusicSuggestionCard from "../musicSuggestionCard";
-import SampleTrack from "./sampleTrack";
+import Paginator from "../paginator";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TrackList from "../trackList";
@@ -25,11 +25,29 @@ function TrackListPageTemplate() {
                                             url:"https://www.shazam.com/track/20066955/kiss-the-rain"
                                           }
                                         }]);
+  const [chosenSuggestion, setChosenSuggestion] = useState("");
+  const [page, setPage] = useState(0);
 
+  
+  const performSearch = async (searchText, page) => {
+      await search(searchText, page).then(result => {
+        setTacks(result.tracks.hits);
+      });
+  }
   const handleChange = async (value) => {
-    await search(value).then(result => {
-      setTacks(result.tracks.hits);
-    });
+    setChosenSuggestion(value)
+    setPage(0)
+    await performSearch(value, 0)
+  };
+  const handlePageLess = async () => {
+    setPage(page - 1)
+    console.log(page)
+    await performSearch(chosenSuggestion, page - 1)
+  };
+  const handlePageMore = async () => {
+    setPage(page + 1)
+    console.log(page)
+    await performSearch(chosenSuggestion, page + 1)
   };
 
   return (
@@ -41,6 +59,9 @@ function TrackListPageTemplate() {
           />
         </Grid>
         <TrackList tracks={tracks}></TrackList>
+      </Grid>
+      <Grid item xs={12}>
+        <Paginator page={page} onArrowLeft={handlePageLess} onArrowRight={handlePageMore}/>
       </Grid>
     </Grid>
   );

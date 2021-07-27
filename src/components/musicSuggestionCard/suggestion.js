@@ -5,7 +5,6 @@ const Suggestion = props => {
 
   const handleChosenSuggestionChange = (term) => {
     props.onUserInput(term);
-    //console.log(term)
   };
 
   return (

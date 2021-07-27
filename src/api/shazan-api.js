@@ -14,10 +14,9 @@ export const autoComplete = async (searchText) => {
   
 };
 
-export const search = async (searchText) => {
+export const search = async (searchText, page) => {
   let codedText = searchText.replace(/ /g, "%20");
-  let page = 0;
-  let limit = 10;
+  let limit = 5;
   const response = await fetch("https://shazam.p.rapidapi.com/search?term="+codedText+"&locale=en-US&offset="+page+"&limit="+limit, {
     "method": "GET",
     "headers": {
