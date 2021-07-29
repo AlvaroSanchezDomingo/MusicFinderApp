@@ -1,10 +1,10 @@
-import { search } from "../../api/shazan-api";
+import { search } from "../api/shazan-api";
 import React, { useState } from "react";
-import MusicSuggestionCard from "../musicSuggestionCard";
-import Paginator from "../paginator";
+import MusicSuggestionCard from "../components/musicSuggestionCard";
+import Paginator from "../components/paginator";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import TrackList from "../trackList";
+import TrackList from "../components/trackList";
 
 const useStyles = makeStyles({
   root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-function TrackListPageTemplate() {
+const TrackPage = () => {
   const classes = useStyles();
   const [tracks, setTacks] = useState([{track:
                                           {
@@ -31,7 +31,14 @@ function TrackListPageTemplate() {
   
   const performSearch = async (searchText, page) => {
       await search(searchText, page).then(result => {
+        let hits = result.tracks.hits;
+        let tracksTemp = []
+        hits.map((hit, i) => (
+          //****************************************continuar por aqui mapear hit[i].track en el array tracksTemp y hacer el setTracks para que sirva cuando hacemos explore y search, el api viene distinto */
+        ));
+      
         setTacks(result.tracks.hits);
+        
       });
   }
   const handleChange = async (value) => {
@@ -40,9 +47,11 @@ function TrackListPageTemplate() {
     await performSearch(value, 0)
   };
   const handlePageLess = async () => {
-    setPage(page - 1)
-    console.log(page)
-    await performSearch(chosenSuggestion, page - 1)
+    if(page > 0){
+      setPage(page - 1)
+      console.log(page)
+      await performSearch(chosenSuggestion, page - 1)
+    }
   };
   const handlePageMore = async () => {
     setPage(page + 1)
@@ -52,18 +61,19 @@ function TrackListPageTemplate() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item container spacing={5}>
-        <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <MusicSuggestionCard
-            onUserInput={handleChange}
-          />
-        </Grid>
-        <TrackList tracks={tracks}></TrackList>
+      <Grid container spacing={2}>
+          <Grid item>
+            <MusicSuggestionCard onUserInput={handleChange}/>
+          </Grid>
+          <Grid item xs = {12} sm container spacing={5}>
+            <TrackList tracks={tracks}></TrackList>
+          </Grid>
       </Grid>
+      
       <Grid item xs={12}>
         <Paginator page={page} onArrowLeft={handlePageLess} onArrowRight={handlePageMore}/>
       </Grid>
     </Grid>
   );
 }
-export default TrackListPageTemplate;
+export default TrackPage;

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TrackCard({ track, action }) {
+export default function TrackCard({ artist, action }) {
   const classes = useStyles();
 
   return (
@@ -24,16 +24,15 @@ export default function TrackCard({ track, action }) {
         className={classes.header}
         title={
           <Typography variant="h5" component="p">
-            {track.title}{" "}
+            {artist.name}{" "}
           </Typography>
         }
-        subheader={track.subtitle}
       />
       <CardMedia
         className={classes.media}
         image={
-          track.images.background
-            ? `${track.images.background}`
+          artist.avatar
+            ? `${artist.avatar}`
             : img
         }
       />

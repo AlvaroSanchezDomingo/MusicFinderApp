@@ -9,7 +9,7 @@ const SuggestionList = props => {
   };
 
   const suggestions = props.hints.map(item => (
-    <Suggestion term ={item.term} onUserInput = {handleChosenSuggestionChange}/>
+    <Suggestion key ={item.term} term = {item.term} onUserInput = {handleChosenSuggestionChange}/>
   ));
 
   return <ul>{suggestions}</ul>;

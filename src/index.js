@@ -2,7 +2,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import HomePage from "./pages/homePage";
+import TrackPage from "./pages/trackPage";
+import ArtistPage from "./pages/artistPage";
+import ExplorePage from "./pages/explorePage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -25,7 +27,9 @@ const App = () => {
         <SiteHeader />      {/* New Header  */}
         <MoviesContextProvider>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={ExplorePage} />
+            <Route exact path="/track" component={TrackPage} />
+            <Route exact path="/artist" component={ArtistPage} />
             <Redirect from="*" to="/" />
           </Switch>
         </MoviesContextProvider>

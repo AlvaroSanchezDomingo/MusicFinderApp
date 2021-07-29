@@ -1,6 +1,7 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
 
+
 const Suggestion = props => {
 
   const handleChosenSuggestionChange = (term) => {

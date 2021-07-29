@@ -28,7 +28,9 @@ const SiteHeader = ( { history }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const menuOptions = [
-    { label: "Home", path: "/" }
+    { label: "Explore Tracks", path: "/" },
+    { label: "Find Tracks", path: "/track" },
+    { label: "Find Artists", path: "/artist" }
   ];
 
   const handleMenuSelect = (pageURL) => {

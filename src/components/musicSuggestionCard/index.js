@@ -1,6 +1,5 @@
 import { autoComplete } from "../../api/shazan-api";
-import React , {useState}  from "react";
-import Spinner from '../spinner'
+import React , {useState, useEffect}  from "react";
 
 import SuggestionList from "./suggestionList";
 
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function FilterMoviesCard(props) {
   const classes = useStyles();
   const [suggestedList, setSuggestedList] = useState({hints:[]});
-  const [chosenSuggestion, setChosenSuggestion] = useState("");
+  const [text, setText] = useState("");
 
   const makeSuggestion = async (searchText) => {
     if(searchText){
@@ -38,13 +37,14 @@ export default function FilterMoviesCard(props) {
       });
     }
   }
-  const filterChange = event => {
-    event.preventDefault();
-    makeSuggestion(event.target.value.toLowerCase());
-  };
+
+  useEffect(() => {
+    const timeOutId = setTimeout(() => makeSuggestion(text), 1000);
+    return () => clearTimeout(timeOutId);
+  }, [text]);
+
 
   const handleChosenSuggestionChange = (term) => {
-    setChosenSuggestion(term);
     props.onUserInput(term);
   };
 
@@ -53,7 +53,7 @@ export default function FilterMoviesCard(props) {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-            Search music
+            Search
         </Typography>
         <TextField
           className={classes.formControl}
@@ -62,12 +62,10 @@ export default function FilterMoviesCard(props) {
           type="search"
           value={props.titleFilter}
           variant="filled"
-          onChange={filterChange}
+          onChange={event => setText(event.target.value)}
         />
       </CardContent>
       <SuggestionList hints={suggestedList.hints} onUserInput = {handleChosenSuggestionChange} />
     </Card>
   );
 }
-
-//<SuggestionList hints={suggestedList.hints} onUserInput = {handleChosenSuggestionChange} />
