@@ -4,7 +4,7 @@ import Paginator from "../components/paginator";
 import Grid from "@material-ui/core/Grid";
 import Spinner from '../components/spinner'
 import { makeStyles } from "@material-ui/core/styles";
-import ExploreList from "../components/exploreList";
+import TrackList from "../components/trackList";
 import { useQuery } from 'react-query'
 import { LocalActivityRounded } from "@material-ui/icons";
 
@@ -19,25 +19,30 @@ const ExplorePage = () => {
   
   
   const [page, setPage] = useState(0);
-  const {  data, error, isLoading, isError, isSuccess }  = useQuery('explore', explore)
-  let tracks = []
+  let tracks
+  const {
+    isLoading,
+    isError,
+    error,
+    data,
+    isFetching
+  } = useQuery(['explore', page], () => explore(page), { keepPreviousData : true })
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <Spinner />
+  }else{
+    tracks= data.tracks
+    console.log(data.tracks)
   }
 
   if (isError) {
     console.log(error)
     return <h1>{error.message}</h1>
-  }  
-  if (isSuccess) {
-    console.log(data.tracks)
-    tracks = data.tracks
-  } 
+  }
   
 
   const performSearch = async ( page) => {
-    console.log(page)
+    setPage(page)
   }
   const handlePageLess = async () => {
     if(page > 0){

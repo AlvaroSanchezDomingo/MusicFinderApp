@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 const TrackPage = () => {
   const classes = useStyles();
-  const [tracks, setTacks] = useState([{track:
+  const [tracks, setTacks] = useState([                                         
                                           {
                                             key:20066955,
                                             title:"Kiss The Rain",
@@ -24,7 +24,7 @@ const TrackPage = () => {
                                             },
                                             url:"https://www.shazam.com/track/20066955/kiss-the-rain"
                                           }
-                                        }]);
+                                        ]);
   const [chosenSuggestion, setChosenSuggestion] = useState("");
   const [page, setPage] = useState(0);
 
@@ -34,10 +34,10 @@ const TrackPage = () => {
         let hits = result.tracks.hits;
         let tracksTemp = []
         hits.map((hit, i) => (
-          //****************************************continuar por aqui mapear hit[i].track en el array tracksTemp y hacer el setTracks para que sirva cuando hacemos explore y search, el api viene distinto */
+          tracksTemp[i] = hit.track
         ));
       
-        setTacks(result.tracks.hits);
+        setTacks(tracksTemp);
         
       });
   }

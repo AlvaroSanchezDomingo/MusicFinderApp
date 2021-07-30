@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
-import img from '../../images/film-poster-placeholder.png'
+import img from '../../images/notfound.png'
 
 
 const useStyles = makeStyles({
@@ -32,8 +32,8 @@ export default function TrackCard({ track, action }) {
       <CardMedia
         className={classes.media}
         image={
-          track.images.background
-            ? `${track.images.background}`
+          track.images
+            ? `${track.images.coverart}`
             : img
         }
       />

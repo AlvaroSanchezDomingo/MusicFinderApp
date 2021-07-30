@@ -31,9 +31,10 @@ export const search = async (searchText, page) => {
   
 };
 
-export const explore = async () => {
-  
-  const response = await fetch("https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom=0", {
+export const explore = async (page) => {
+
+  let startFrom = page*10;
+  const response = await fetch("https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom="+ startFrom, {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": "d6a391f055mshf08c37611fa366ap1b7267jsn4fb93f445f6a",
