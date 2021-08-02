@@ -5,13 +5,14 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-
+import AuthHeader from "../siteHeader/authHeader";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { withRouter } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SiteHeader = ( { history }) => {
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -51,6 +53,7 @@ const SiteHeader = ( { history }) => {
           <Typography variant="h6" className={classes.title}>
             Music Finder App
           </Typography>
+          <AuthHeader />
             {isMobile ? (
               <>
                 <IconButton
