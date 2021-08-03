@@ -2,17 +2,14 @@ import React from "react";
 import TrackList from "../components/trackList";
 import SampleTrack from "./sampleTrack";
 import { MemoryRouter } from "react-router";
-import { action } from "@storybook/addon-actions";
-import AddToFavoritesIcon from "../components/cardIcons/addToFavourites";
 import Grid from "@material-ui/core/Grid";
-import MoviesContextProvider from "../contexts/moviesContext";
+
 
 export default {
   title: "Home Page/TrackList",
   component: TrackList,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
   ],
 };
 

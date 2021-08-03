@@ -9,7 +9,6 @@ import SiteHeader from './components/siteHeader'
 import LoginPage from "./pages/loginPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
-import MoviesContextProvider from "./contexts/moviesContext";
 import AuthProvider from "./contexts/authContext";
 import PrivateRoute from "./pages/privateRoute";
 
@@ -28,8 +27,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthProvider>
-          <SiteHeader />      {/* New Header  */}
-          <MoviesContextProvider>
+          <SiteHeader /> 
             <Switch>
               <Route exact path="/" component={ExplorePage} />
               <Route path="/login" component={LoginPage} />
@@ -37,7 +35,6 @@ const App = () => {
               <PrivateRoute exact path="/artist" component={ArtistPage} />
               <Redirect from="*" to="/" />
             </Switch>
-          </MoviesContextProvider>
           </AuthProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

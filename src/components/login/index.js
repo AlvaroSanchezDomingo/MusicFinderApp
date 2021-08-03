@@ -1,29 +1,30 @@
 import {Button,TextField,Grid,Paper,Typography} from "@material-ui/core";
 import React, { useContext, useState, } from "react";
+import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
 
 export default function Login(props) {
     const context = useContext(AuthContext);
-    const [state, setState] = useState({ username: "", password:""});
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-
-    const handleChange = (event) => {
-        setState({ username: event.state.username, password: event.state.password });
-    }
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (state.username == 'admin@admin.com' && state.password == 'secret') {
-            context.authenticate(state.username, "pass1");
-            props.history.push("/explore");
+        if (username === 'admin' && password === 'secret') {
+            context.authenticate(username, "pass1");
         } else {
             alert('Incorrect Credentials! Try admin - secret');
         }
     }
-
-        return (
+    const { from } = { from: { pathname: "/explore" } };
+        return context.isAuthenticated ? (
+            <Redirect to={from} />
+          ) : (
             <div>
 
                 <Grid container spacing={0} justify="center" direction="row">
+                    {username}
+                    {password}
                     <Grid item>
                         <Grid
                         container
@@ -43,21 +44,16 @@ export default function Login(props) {
                                     </Typography>
                                 </Grid>
                                 <Grid item>
-                                    <form onSubmit={handleSubmit}>
                                         <Grid container direction="column" spacing={2}>
                                             <Grid item>
                                                 <TextField
-                                                type="email"
-                                                placeholder="Email"
+                                                type="username"
+                                                placeholder="Username"
                                                 fullWidth
                                                 name="username"
                                                 variant="outlined"
-                                                value={state.username}
-                                                onChange={(event) =>
-                                                setState({
-                                                [event.target.name]: event.target.value,
-                                                })
-                                                }
+                                                value={username}
+                                                onChange={(event) => setUsername(event.target.value)}
                                                 required
                                                 autoFocus
                                             />
@@ -69,12 +65,8 @@ export default function Login(props) {
                                                 fullWidth
                                                 name="password"
                                                 variant="outlined"
-                                                value={state.password}
-                                                onChange={(event) =>
-                                                setState({
-                                                [event.target.name]: event.target.value,
-                                                })
-                                                }
+                                                value={password}
+                                                onChange={(event) => setPassword(event.target.value)}
                                                 required
                                                 />
                                             </Grid>
@@ -84,12 +76,12 @@ export default function Login(props) {
                                                 color="primary"
                                                 type="submit"
                                                 className="button-block"
+                                                onClick={handleSubmit}
                                                 >
                                                     Submit
                                                 </Button>
                                             </Grid>
                                         </Grid>
-                                    </form>
                                 </Grid>
                             </Paper>
                         </Grid>

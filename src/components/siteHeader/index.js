@@ -48,7 +48,7 @@ const SiteHeader = ( { history }) => {
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            Shazan Client
+            Shazam Client
           </Typography>
           <Typography variant="h6" className={classes.title}>
             Music Finder App

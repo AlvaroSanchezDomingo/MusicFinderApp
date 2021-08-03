@@ -1,11 +1,11 @@
 import React from "react";
-import TrackCard from "../components/trackCard";
-import SampleTrack from "./sampleTrack";
+import ArtistCard from "../components/artistCard";
+import SampleArtist from "./sampleArtist";
 import { MemoryRouter } from "react-router";
 
 export default {
-  title: "Home Page/TrackCard",
-  component: TrackCard,
+  title: "Home Page/ArtistCard",
+  component: ArtistCard,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
   ],
@@ -13,8 +13,8 @@ export default {
 
 export const Basic = () => {
   return (
-    <TrackCard
-      track={SampleTrack}
+    <ArtistCard
+      artist={SampleArtist}
     />
   );
 };

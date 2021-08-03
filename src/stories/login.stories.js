@@ -1,11 +1,11 @@
 import React from "react";
-import SiteHeader from "../components/siteHeader";
+import Login from "../components/login";
 import { MemoryRouter } from "react-router";
 import AuthProvider from "../contexts/authContext";
 
 export default {
-  title: "App Header",
-  component: SiteHeader,
+  title: "Login",
+  component: Login,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
     (Story) => <AuthProvider>{Story()}</AuthProvider>,
@@ -13,7 +13,7 @@ export default {
 };
 
 export const Basic = () => {
-  return (<SiteHeader />)
+  return (<Login />)
 };
 
 Basic.storyName = "Default";
