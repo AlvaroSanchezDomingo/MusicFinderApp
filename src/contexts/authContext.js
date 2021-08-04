@@ -3,12 +3,8 @@ import React, { useState, useEffect, createContext } from "react";
 export const AuthContext = createContext(null);
 
 const AuthContextProvider = (props) => {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({ username: null, password: null });
 
-  // useEffect(() => {
-  //   setIsAuthenticated(true);
-  // }, [newUser.username]);
+  const [user, setUser] = useState({ username: null, password: null });
 
   const authenticate = (username, password) => {
     setUser({ username, password });
@@ -24,6 +20,7 @@ const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        user,
         authenticate,
         signout,
       }}

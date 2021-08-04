@@ -11,7 +11,7 @@ export default function Login(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (username === 'admin' && password === 'secret') {
-            context.authenticate(username, "pass1");
+            context.authenticate(username, password);
         } else {
             alert('Incorrect Credentials! Try admin - secret');
         }
@@ -23,8 +23,6 @@ export default function Login(props) {
             <div>
 
                 <Grid container spacing={0} justify="center" direction="row">
-                    {username}
-                    {password}
                     <Grid item>
                         <Grid
                         container

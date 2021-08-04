@@ -14,22 +14,21 @@ const useStyles = makeStyles({
 
 const ArtistPage = () => {
   const classes = useStyles();
-  const [artists, setArtists] = useState([{artist:
-                                          {
-                                            avatar:"https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/c0/f1/7f/c0f17f01-be7e-8843-acbd-213118400a72/pr_source.png/800x800cc.jpg",
-                                            id:"5486081",
-                                            name:"Olamide",
-                                            verified:false,
-                                            adamid:"389401008"
-                                          }
-                                        }]);
+  const [artists, setArtists] = useState([]);
   const [chosenSuggestion, setChosenSuggestion] = useState("");
   const [page, setPage] = useState(0);
 
   
   const performSearch = async (searchText, page) => {
       await search(searchText, page).then(result => {
-        setArtists(result.artists.hits);
+        let hits = result.artists.hits;
+        console.log(hits)
+        let artistsTemp = []
+        hits.map((hit, i) => (
+          artistsTemp[i] = hit.artist
+        ));
+        
+        setArtists(artistsTemp);
       });
   }
   const handleChange = async (value) => {
