@@ -27,6 +27,7 @@ npm run start
 ## API Data Model.
 
 The music finder app uses a Shazam API as backend to retrieve track and artist recomendations. The app uses three endponts which are explained bellow.
+>Shazam API endpoints
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/api-endpoints.PNG">
 
 
@@ -38,6 +39,7 @@ url: 'https://shazam.p.rapidapi.com/auto-complete',
 params: {term: 'bad habits', locale: 'en-US'},
 
 Response
+>Autocomplete response
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/autocomplete-response.PNG">
 
 
@@ -48,7 +50,9 @@ url: 'https://shazam.p.rapidapi.com/search',
 params: {term: 'bad habits', locale: 'en-US', offset: '0', limit: '5'},
 
 Response
+>Search track response
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchtracks-response.PNG">
+>Search artist response
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchartist-response.PNG">
 
 ### explore
@@ -58,11 +62,15 @@ url: 'https://shazam.p.rapidapi.com/charts/track',
 params: {locale: 'en-US', pageSize: '20', startFrom: '0'},
 
 Response
+>Explore response
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/explore-response.PNG">
 
 ## App Design.
 
 ### Component catalogue.
+
+>List storybook
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-list.PNG">
 
 >Login storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-login.PNG">
