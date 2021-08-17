@@ -27,7 +27,7 @@ npm run start
 ## API Data Model.
 
 The music finder app uses a Shazam API as backend to retrieve track and artist recomendations. The app uses three endponts which are explained bellow.
-<img src="api-endpoints">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/api-endpoints.PNG">
 
 
 ### autoComplete
@@ -38,7 +38,7 @@ url: 'https://shazam.p.rapidapi.com/auto-complete',
 params: {term: 'bad habits', locale: 'en-US'},
 
 Response
-<img src="autocomplete-response">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/autocomplete-response.PNG">
 
 
 ### search
@@ -48,8 +48,8 @@ url: 'https://shazam.p.rapidapi.com/search',
 params: {term: 'bad habits', locale: 'en-US', offset: '0', limit: '5'},
 
 Response
-<img src="searchtrack-response">
-<img src="searchartist-response">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchtrack-response.PNG">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchartist-response.PNG">
 
 ### explore
 Explore returns a list with the latest hits. It has paginations features therefore we can retrieve several pages with an expecific size. In the example bellow, "bad habits" of Ed sheeran is number 2 in the list.
@@ -58,39 +58,39 @@ url: 'https://shazam.p.rapidapi.com/charts/track',
 params: {locale: 'en-US', pageSize: '20', startFrom: '0'},
 
 Response
-<img src="explore-response">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/explore-response.PNG">
 
 ## App Design.
 
 ### Component catalogue.
 
-<img src="storybook-login">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-login.PNG">
 
-<img src="storybook-header">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-header.PNG">
 
-<img src="storybook-searchbox">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-searchbox.PNG">
 
-<img src="storybook-artistcard">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-artistcard.PNG">
 
-<img src="storybook-artistlist">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-artistlist.PNG">
 
-<img src="storybook-trackcard">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-trackcard.PNG">
 
-<img src="storybook-tracklist">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-tracklist.PNG">
 
 
 ### UI Design.
 
-<img src="view-login">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-login.PNG">
 >Allow the user to login in order to view the private views.
 
-<img src="view-explore">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-explore.PNG">
 >Public view that shows a list of the latest hits. Clicking the paginations to show more tracks.
 
-<img src="view-findtracks">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-findtracks.PNG">
 >Private view that shows a list of recommended tracks based on an input text from the search box. Insert text on the search box and select one of the recomendations to get a list of recommended tracks.
 
-<img src="view-findartists">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-findartists.PNG">
 >Private view tha shows a list of recommended artist based on an input text from the search box. Insert text on the search box and select one of the recomendations to get a list of recommended artists.
 
 ### Routing.
@@ -102,8 +102,6 @@ Response
 
 
 ## Independent learning.
-
-....... Briefly state any technologies/techniques used in your project codebase that was not covered in the lectures/labs. Provide source code filename (source code excerpts are not required in most cases) references to support your assertions and include references (articles/blogs) ......... 
 
 + react query pagination (https://react-query.tanstack.com/guides/paginated-queries)
 + basic authentication (components/login)
