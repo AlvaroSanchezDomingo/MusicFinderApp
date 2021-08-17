@@ -48,7 +48,7 @@ url: 'https://shazam.p.rapidapi.com/search',
 params: {term: 'bad habits', locale: 'en-US', offset: '0', limit: '5'},
 
 Response
-<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchtrack-response.PNG">
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchtracks-response.PNG">
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchartist-response.PNG">
 
 ### explore
@@ -64,34 +64,42 @@ Response
 
 ### Component catalogue.
 
+>Login storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-login.PNG">
 
+>Header storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-header.PNG">
 
+>SearchBox storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-searchbox.PNG">
 
+>ArtistCard storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-artistcard.PNG">
 
+>ArtistList storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-artistlist.PNG">
 
+>TrackCard storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-trackcard.PNG">
 
+>TrackList storybook
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/storybook-tracklist.PNG">
 
 
 ### UI Design.
 
-<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-login.PNG">
 >Allow the user to login in order to view the private views.
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-login.PNG">
 
-<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-explore.PNG">
 >Public view that shows a list of the latest hits. Clicking the paginations to show more tracks.
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-explore.PNG">
 
-<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-findtracks.PNG">
 >Private view that shows a list of recommended tracks based on an input text from the search box. Insert text on the search box and select one of the recomendations to get a list of recommended tracks.
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-findtracks.PNG">
 
-<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-findartists.PNG">
 >Private view tha shows a list of recommended artist based on an input text from the search box. Insert text on the search box and select one of the recomendations to get a list of recommended artists.
+<img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/view-findartists.PNG">
+
 
 ### Routing.
 
