@@ -4,60 +4,108 @@ Name: Alvaro Sanchez Domingo
 
 ## Overview.
 
-...... State the app concept and objectives. If it's the Movies Fan app extension, only state the additional objectives .........
+The music finder app uses Shazam API to allow the user to explore latest music hits as well as find specific tracks and artist by de name. In order to find tracks and artist, the user must insert text in the search box, the system will suggest few posible options base on the text inputed. Selecting one of the sugestions, the system will offer all the tracks or artist related with that piece of text. All three main views have pagination feature. In the case of explore view, the tracks are stored on cash using react query pagination feature. In the other hand, when searching for tracks and artist, the result it is not stored in cash as it changes with every search. The view Explore tracks is public, there is no need for the user to login, instead the find tracks and find artist views are private and the user is forced to login in order to use this advance views. There is a extra view for loging in.
 
 
-...... A bullet-point list of user features. If it's the Movies Fan app extension, only list new/modified features...... 
  
- + Feature 1
- + Feature 2
- + Feature 3
- + etc
- + etc
+ + Explore latest hits recomended by Shazam with pagination and cashed store
+ + Find tracks based on user input and Shazam text sugestion with pagination.
+ + Find artist based on user input and Shazam text sugestion with pagination.
+ + Login view
+ + Logout feature
 
 ## Setup requirements.
 
-...... A brief explanation (to a third party) of any non-standard setup steps necessary to run your app/client locally (after cloning the repo) ........
+Run the following commands in order to get the app running.
+
+Download the Repository
+run the following command to install all the npm dependencies
+npm install
+run the following command to run the application
+npm run start
 
 ## API Data Model.
 
-..... [For non-Movies Fan app] Insert a diagram of the API's data model (see example below) AND/OR a sample(s) of the JSON documents returned by its endpoints ........
+The music finder app uses a Shazam API as backend to retrieve track and artist recomendations. The app uses three endponts which are explained bellow.
+<img src="api-endpoints">
 
-![][model]
 
-......[For the Movies Fan app] Specify the additional TMDB endpoints used and show sample responses, in JSON .........
+### autoComplete
+Auto complete returns text sugestions base on text input by the user. In the example bellow, if the text input is "bad habits" the text suggestions are as follow.
+
+Request:
+url: 'https://shazam.p.rapidapi.com/auto-complete',
+params: {term: 'bad habits', locale: 'en-US'},
+
+Response
+<img src="autocomplete-response">
+
+
+### search
+Search retuns a list of recommended tracks and a list of recomended artists based on a text. In the example bellow, if the text input is "bad habits" the tracks and artist recommendatios are as follow.
+Request:
+url: 'https://shazam.p.rapidapi.com/search',
+params: {term: 'bad habits', locale: 'en-US', offset: '0', limit: '5'},
+
+Response
+<img src="searchtrack-response">
+<img src="searchartist-response">
+
+### explore
+Explore returns a list with the latest hits. It has paginations features therefore we can retrieve several pages with an expecific size. In the example bellow, "bad habits" of Ed sheeran is number 2 in the list.
+Request:
+url: 'https://shazam.p.rapidapi.com/charts/track',
+params: {locale: 'en-US', pageSize: '20', startFrom: '0'},
+
+Response
+<img src="explore-response">
 
 ## App Design.
 
 ### Component catalogue.
 
-....... Insert a screenshot from the Storybook UI showing your component catalogue. [For the Movies app, hi-light stories relating to new/modified components - see the example screenshot below] .......
+<img src="storybook-login">
 
-![][stories]
+<img src="storybook-header">
+
+<img src="storybook-searchbox">
+
+<img src="storybook-artistcard">
+
+<img src="storybook-artistlist">
+
+<img src="storybook-trackcard">
+
+<img src="storybook-tracklist">
+
 
 ### UI Design.
 
-...... Insert screenshots of the app's views, with appropriate captions (see example below). (For the Movies Fan App, only show the new/modified views) ........
+<img src="view-login">
+>Allow the user to login in order to view the private views.
 
-![][view]
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
+<img src="view-explore">
+>Public view that shows a list of the latest hits. Clicking the paginations to show more tracks.
+
+<img src="view-findtracks">
+>Private view that shows a list of recommended tracks based on an input text from the search box. Insert text on the search box and select one of the recomendations to get a list of recommended tracks.
+
+<img src="view-findartists">
+>Private view tha shows a list of recommended artist based on an input text from the search box. Insert text on the search box and select one of the recomendations to get a list of recommended artists.
 
 ### Routing.
 
-...... Insert a list of the routes supported by your app and state the associated view. If relevant, specify which of the routes require authentication, i.e. protected/private. [For the Movies Fan app, only new routes should be listed.] ......... 
++ GET / - Public Explore view - Shows a list of latests hits with pagination feature.
++ GET /login - Public Login view - Allow the user to login.
++ GET /track - Private find track view -  Allow the user to find tracks based on an input text.
++ GET /artist - Private find track view -  Allow the user to find artists based on an input text.
 
-+ GET /blogs - displays all published blogs.
-+ POST /blogs (protected) - add a new blog.
-+ GET /blogs/:id - displays a particular blog.
-+ GET /blogs/:id/comments (protected) - detail view of a particular blog and its comments.
-+ etc.
-+ etc.
 
-## Independent learning (If relevant).
+## Independent learning.
 
 ....... Briefly state any technologies/techniques used in your project codebase that was not covered in the lectures/labs. Provide source code filename (source code excerpts are not required in most cases) references to support your assertions and include references (articles/blogs) ......... 
 
-
-[model]: ./data.jpg
-[view]: ./view.png
-[stories]: ./storybook.png
++ react query pagination (https://react-query.tanstack.com/guides/paginated-queries)
++ basic authentication (components/login)
++ New material UI for login view (components/login)
++ Shazam API endpoints (https://rapidapi.com/apidojo/api/shazam)
