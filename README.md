@@ -1,4 +1,4 @@
-# Assignment - ReactJS app.
+# Assignment - ReactJS app. Music Finder App
 
 Name: Alvaro Sanchez Domingo
 
@@ -52,6 +52,7 @@ params: {term: 'bad habits', locale: 'en-US', offset: '0', limit: '5'},
 Response
 >Search track response
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchtracks-response.PNG">
+
 >Search artist response
 <img src="https://github.com/AlvaroSanchezDomingo/MusicFinderApp/blob/master/images/searchartist-response.PNG">
 
